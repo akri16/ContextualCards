@@ -1,4 +1,4 @@
-package com.akribase.contextualcards.models
+package com.akribase.contextualcards.models.data
 
 data class Entity (
     val text: String,
