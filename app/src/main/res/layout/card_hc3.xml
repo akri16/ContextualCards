@@ -3,14 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="380dp"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    tools:cardBackgroundColor="#454AA6">
+    app:cardCornerRadius="12dp">
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="#454AA6" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingBottom="20dp">
 
         <ImageView
@@ -56,9 +63,9 @@
             android:layout_marginTop="28dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/roboto_medium"
-            tools:text="Action"
             app:cornerRadius="6dp"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:text="Action" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
