@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/drawable/ic_hc6_img.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/card_hc1.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/card_hc1.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/card_hc3.xml" value="0.264" />
         <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/card_hc5.xml" value="0.4" />
         <entry key="..\:/Users/Dell/Desktop/Amit/Android_Projects/ContextualCards/app/src/main/res/layout/card_hc6.xml" value="0.264" />
