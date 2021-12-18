@@ -7,6 +7,6 @@ data class RenderableCardGroup (
     val id: Int,
     val name: String,
     val designType: DesignType,
-    val cards: List<Card>,
+    val cards: List<RenderableCard>,
     val isScrollable: Boolean
 )
