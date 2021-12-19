@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
-private fun Context.dpToPx(dp: Int) = TypedValue.applyDimension(
+fun Context.dpToPx(dp: Int) = TypedValue.applyDimension(
     TypedValue.COMPLEX_UNIT_DIP,
     dp.toFloat(),
     resources.displayMetrics
