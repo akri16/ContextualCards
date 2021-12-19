@@ -40,7 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_hc5_img" />
+                tools:srcCompat="@drawable/ic_hc5_img" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -61,22 +61,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{card.desp}"
-                tools:text="10-Day Savings Challenge"
-                app:layout_constraintBottom_toTopOf="@+id/imageView7"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:text="10-Day Savings Challenge" />
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:srcCompat="@drawable/ic_hc5_rect" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>
