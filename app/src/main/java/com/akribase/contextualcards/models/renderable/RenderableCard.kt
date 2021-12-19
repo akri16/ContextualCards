@@ -15,7 +15,7 @@ import android.text.style.StyleSpan
 import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import com.akribase.contextualcards.models.data.*
-import parseColor
+import com.akribase.contextualcards.utils.parseColor
 
 data class RenderableCard(
     val name: String,

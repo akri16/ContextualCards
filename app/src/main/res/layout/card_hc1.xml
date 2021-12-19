@@ -15,6 +15,7 @@
         android:layout_height="60dp"
         android:layout_margin="8dp"
         app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
         custom:deeplink="@{card.url}">
 
         <ImageView

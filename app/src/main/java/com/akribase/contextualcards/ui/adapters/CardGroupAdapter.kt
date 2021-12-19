@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.akribase.contextualcards.BR
 import com.akribase.contextualcards.models.renderable.RenderableCard
-import inflater
+import com.akribase.contextualcards.utils.inflater
 
 class CardGroupAdapter(
     private val cards: List<RenderableCard>,
