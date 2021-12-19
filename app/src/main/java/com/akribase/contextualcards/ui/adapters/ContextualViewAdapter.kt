@@ -1,8 +1,8 @@
 package com.akribase.contextualcards.ui.adapters
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +46,9 @@ class ContextualViewAdapter(
                 binding.setVariable(BR.card, it)
                 binding.executePendingBindings()
                 ll.addView(binding.root, layoutParams)
+                ll.addView(ll.inflate(R.layout.space_view))
             }
+            ll.removeViewAt(ll.size - 1)
         }
     }
 
@@ -57,7 +59,7 @@ class ContextualViewAdapter(
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            rv.addItemDecoration(SpacingItemDecoration(40))
+            rv.addItemDecoration(SpacingItemDecoration(20))
         }
 
         override fun bind(cardGroup: RenderableCardGroup) {

@@ -14,7 +14,9 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.akribase.contextualcards.models.data.CTA
 import com.akribase.contextualcards.models.renderable.RenderableBG
+import com.akribase.contextualcards.utils.dpToPx
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
 
@@ -45,7 +47,20 @@ fun setDrawable(view: ImageView, src: RenderableBG) {
         return
     }
 
-    setImage(view, src.url)
+    src.let{
+        if (it.width != null && it.height != null){
+            Glide.with(view)
+                .load(it.url)
+                .apply(RequestOptions()
+                    .override(
+                        view.context.dpToPx(it.width).toInt(),
+                        view.context.dpToPx(it.height).toInt()
+                    ))
+                .into(view)
+        } else {
+            setImage(view, it.url)
+        }
+    }
 }
 
 @BindingAdapter(value = ["android:src"])

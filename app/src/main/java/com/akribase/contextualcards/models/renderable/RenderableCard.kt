@@ -101,17 +101,20 @@ data class RenderableCard(
                     GradientDrawable(orientation, gradient.colors.map { it.parseColor() }.toIntArray())
                 }
                 else -> {
-                    ColorDrawable(Color.TRANSPARENT)
+                    ColorDrawable(Color.WHITE)
                 }
             }
         }
 
-        fun createFromCard(card: Card): RenderableCard {
+        fun createFromCard(card: Card, height: Int): RenderableCard {
             val title = formatSpans(card.formattedTitle, card.title ?: "")
             val desp = formatSpans(card.formattedDescription, card.description ?: "")
 
             val bg = if (card.bgImage?.image_url != null) {
-                RenderableBG(url = card.bgImage.image_url)
+                with(card.bgImage) {
+                    val width = aspectRatio?.times(height)?.toInt() ?: height
+                    RenderableBG(url = image_url, height = height, width = width)
+                }
             } else {
                 RenderableBG(img = getDrawableBG(card.bgColor, card.gradient))
             }
