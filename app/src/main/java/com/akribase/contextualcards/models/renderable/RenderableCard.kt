@@ -29,7 +29,9 @@ data class RenderableCard(
 
     companion object {
         private fun formatSpans(formattedText: FormattedText?, fallbackText: String): CharSequence {
-            val text = " ${formattedText?.text} "
+            if (formattedText == null) return fallbackText
+
+            val text = " ${formattedText.text} "
             val splitStrings = text.split("{}")
             val spannableBuilder = SpannableStringBuilder()
             var spanStart = -1
@@ -38,7 +40,7 @@ data class RenderableCard(
                 if (spanStart == -1) {
                     spanStart = 0
                 } else {
-                    val entity = formattedText?.entities?.get(i-1) ?: return fallbackText
+                    val entity = formattedText.entities[i-1]
                     spannableBuilder.append(entity.text)
                     val start = spanStart
                     val end = spanStart + entity.text.length
