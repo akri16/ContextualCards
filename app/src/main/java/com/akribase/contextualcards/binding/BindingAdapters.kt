@@ -7,10 +7,14 @@ import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.Button
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.akribase.contextualcards.models.data.CTA
+import com.akribase.contextualcards.models.renderable.RenderableBG
+import com.bumptech.glide.Glide
 
 
 @BindingAdapter(value = ["deeplink"])
@@ -31,4 +35,19 @@ fun setCTA(view: Button, cta: CTA) {
         setTextColor(Color.parseColor(cta.textColor))
         text = cta.text
     }
+}
+
+@BindingAdapter(value = ["bg"])
+fun setDrawable(view: ImageView, src: RenderableBG) {
+    src.img?.let {
+        view.setImageDrawable(it)
+        return
+    }
+
+    setImage(view, src.url)
+}
+
+@BindingAdapter(value = ["android:src"])
+fun setImage(view: ImageView, src: String?) {
+    src?.let{ Glide.with(view).load(src).into(view) }
 }

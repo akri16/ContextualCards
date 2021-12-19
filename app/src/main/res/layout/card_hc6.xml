@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@{card.bg}"
+            custom:bg="@{card.bg}"
             app:srcCompat="@color/white" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
