@@ -10,13 +10,14 @@ data class RenderableCardGroup (
     val name: String,
     val designType: DesignType,
     val cards: List<RenderableCard>,
-    val isScrollable: Boolean
+    val isScrollable: Boolean,
+    val height: Int
 ){
     companion object {
         fun createFromCardGroup(cardGroup: CardGroup): RenderableCardGroup {
             val cards = cardGroup.cards.map { RenderableCard.createFromCard(it) }
             return with(cardGroup) {
-                RenderableCardGroup(id, name, designType, cards, isScrollable)
+                RenderableCardGroup(id, name, designType, cards, isScrollable, height)
             }
         }
     }

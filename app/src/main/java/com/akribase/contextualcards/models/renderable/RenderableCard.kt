@@ -76,7 +76,7 @@ data class RenderableCard(
                 spanStart += s.length
             }
 
-            return spannableBuilder
+            return spannableBuilder.trim()
         }
 
         private fun getDrawableBG(bgColor: String?, gradient: Gradient?): Drawable {

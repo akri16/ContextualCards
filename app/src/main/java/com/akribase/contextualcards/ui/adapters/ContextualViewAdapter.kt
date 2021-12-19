@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akribase.contextualcards.BR
 import com.akribase.contextualcards.R
@@ -28,6 +29,7 @@ class ContextualViewAdapter(
         )
 
         override fun bind(cardGroup: RenderableCardGroup) {
+            ll.removeAllViews()
             val layoutId = cardGroup.designType.layout
             cardGroup.cards.forEach {
                 val binding = DataBindingUtil.inflate<ViewDataBinding>(
@@ -41,6 +43,15 @@ class ContextualViewAdapter(
     }
 
     class ListVH(private val rv: RecyclerView) : VH(rv) {
+        init {
+            rv.layoutManager = LinearLayoutManager(
+                rv.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            rv.addItemDecoration(SpacingItemDecoration(40))
+        }
+
         override fun bind(cardGroup: RenderableCardGroup) {
             rv.adapter = CardGroupAdapter(cardGroup.cards, cardGroup.designType.layout)
         }

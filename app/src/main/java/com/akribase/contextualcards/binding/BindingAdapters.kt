@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.akribase.contextualcards.models.data.CTA
 import com.akribase.contextualcards.models.renderable.RenderableBG
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 
 
 @BindingAdapter(value = ["deeplink"])

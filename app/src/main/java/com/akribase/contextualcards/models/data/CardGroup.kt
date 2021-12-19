@@ -5,5 +5,6 @@ data class CardGroup(
     val name: String,
     val designType: DesignType,
     val cards: List<Card>,
-    val isScrollable: Boolean
+    val isScrollable: Boolean,
+    val height: Int
 )
