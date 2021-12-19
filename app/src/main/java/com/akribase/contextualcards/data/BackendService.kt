@@ -27,7 +27,6 @@ interface BackendService {
                 .build()
             return retrofit.create(BackendService::class.java)
         }
-
     }
 
 }
