@@ -33,6 +33,7 @@ class MainViewModel: ViewModel() {
                     is RepoResult.Error -> Timber.d(repoResult.err.toString())
                 }
             }
+            isFetching.value = false
         }
     }
 }

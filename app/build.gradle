@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     def lifecycle_version = "2.4.0"
 
     //Retrofit

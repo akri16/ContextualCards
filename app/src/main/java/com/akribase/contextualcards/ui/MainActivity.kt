@@ -16,6 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initRv()
+        initSwipeToRefresh()
+    }
+
+    private fun initSwipeToRefresh() {
+        binding.refresh.setOnRefreshListener { viewModel.fetchUISpec() }
+        viewModel.isFetching.observe(this) { binding.refresh.isRefreshing = it }
     }
 
     private fun initRv() {
@@ -23,4 +29,5 @@ class MainActivity : AppCompatActivity() {
             binding.rv.adapter = ContextualViewAdapter(it)
         }
     }
+
 }
