@@ -33,7 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorSurface"
-                android:clipToPadding="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="12dp"
+                android:clipToPadding="false"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

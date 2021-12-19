@@ -52,14 +52,14 @@ class ContextualViewAdapter(
         }
     }
 
-    class ListVH(private val rv: RecyclerView, designType: DesignType) : VH(rv, designType) {
+    class ListVH(private val rv: RecyclerView, designType: DesignType): VH(rv, designType) {
         init {
             rv.layoutManager = LinearLayoutManager(
                 rv.context,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            rv.addItemDecoration(SpacingItemDecoration(20))
+            rv.addItemDecoration(SpacingItemDecoration(rv.context.dpToPx(12).toInt()))
         }
 
         override fun bind(cardGroup: RenderableCardGroup) {
