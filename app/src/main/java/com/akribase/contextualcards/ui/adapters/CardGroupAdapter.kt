@@ -5,7 +5,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.akribase.contextualcards.BR
+import com.akribase.contextualcards.models.data.DesignType
 import com.akribase.contextualcards.models.renderable.RenderableCard
+import com.akribase.contextualcards.utils.getScreenWidth
 import com.akribase.contextualcards.utils.inflater
 
 class CardGroupAdapter(
@@ -13,9 +15,16 @@ class CardGroupAdapter(
     private val layoutId: Int
 ): RecyclerView.Adapter<CardGroupAdapter.VH>() {
 
-    class VH(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
-
+        init {
+            if (DesignType.getTypeFromLayout(layoutId) == DesignType.HC5) {
+                binding.root.layoutParams = ViewGroup.LayoutParams(
+                    getScreenWidth() - 30,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            }
+        }
 
         fun bind(card: RenderableCard) {
             binding.setVariable(BR.card, card)

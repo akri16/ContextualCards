@@ -12,6 +12,7 @@ import com.akribase.contextualcards.R
 import com.akribase.contextualcards.models.data.DesignType
 import com.akribase.contextualcards.models.renderable.RenderableCardGroup
 import com.akribase.contextualcards.utils.dpToPx
+import com.akribase.contextualcards.utils.getScreenWidth
 import com.akribase.contextualcards.utils.inflate
 import com.akribase.contextualcards.utils.inflater
 import kotlin.math.abs
