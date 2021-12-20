@@ -1,4 +1,4 @@
-package com.akribase.contextualcards.ui.adapters
+package com.akribase.contextualcards.ui.adapters.cardgroup
 
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,13 +12,15 @@ import com.akribase.contextualcards.utils.inflater
 
 class CardGroupAdapter(
     private val cards: List<RenderableCard>,
-    private val layoutId: Int
+    private val designType: DesignType
 ): RecyclerView.Adapter<CardGroupAdapter.VH>() {
 
-    inner class VH(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
-
+    inner class VH(
+        private val binding: ViewDataBinding,
+        private val designType: DesignType
+    ): RecyclerView.ViewHolder(binding.root) {
         init {
-            if (DesignType.getTypeFromLayout(layoutId) == DesignType.HC5) {
+            if (designType == DesignType.HC5) {
                 binding.root.layoutParams = ViewGroup.LayoutParams(
                     getScreenWidth() - 30,
                     ViewGroup.LayoutParams.MATCH_PARENT
@@ -32,7 +34,8 @@ class CardGroupAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VH(DataBindingUtil.inflate(
-        parent.inflater, layoutId, null, false)
+        parent.inflater, designType.layout, null, false),
+        designType
     )
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(cards[position])

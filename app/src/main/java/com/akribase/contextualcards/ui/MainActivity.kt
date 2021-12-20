@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.akribase.contextualcards.R
 import com.akribase.contextualcards.databinding.ActivityMainBinding
-import com.akribase.contextualcards.ui.adapters.ContextualViewAdapter
+import com.akribase.contextualcards.ui.adapters.contextualview.ContextualViewAdapter
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
