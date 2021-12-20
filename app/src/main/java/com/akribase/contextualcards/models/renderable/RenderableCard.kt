@@ -106,13 +106,13 @@ data class RenderableCard(
             }
         }
 
-        fun createFromCard(card: Card, height: Int): RenderableCard {
+        fun createFromCard(card: Card, height: Int?): RenderableCard {
             val title = formatSpans(card.formattedTitle, card.title ?: "")
             val desp = formatSpans(card.formattedDescription, card.description ?: "")
 
             val bg = if (card.bgImage?.image_url != null) {
                 with(card.bgImage) {
-                    val width = aspectRatio?.times(height)?.toInt() ?: height
+                    val width = height?.let { aspectRatio?.times(it)?.toInt() }
                     RenderableBG(url = image_url, height = height, width = width)
                 }
             } else {

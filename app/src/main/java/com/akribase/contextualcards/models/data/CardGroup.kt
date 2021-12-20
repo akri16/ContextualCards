@@ -6,5 +6,5 @@ data class CardGroup(
     val designType: DesignType,
     val cards: List<Card>,
     val isScrollable: Boolean,
-    val height: Int
+    val height: Int? = null
 )

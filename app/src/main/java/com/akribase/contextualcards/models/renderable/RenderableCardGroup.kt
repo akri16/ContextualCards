@@ -14,11 +14,10 @@ data class RenderableCardGroup (
     val designType: DesignType,
     val cards: List<RenderableCard>,
     val isScrollable: Boolean,
-    val height: Int
+    val height: Int?
 ){
     companion object {
         fun createFromCardGroup(cardGroup: CardGroup): RenderableCardGroup {
-            Log.d("ss", cardGroup.toString())
             val cards = cardGroup.cards.map { RenderableCard.createFromCard(it, cardGroup.height) }
             return with(cardGroup) {
                 val isScrollable = if (designType == DesignType.HC9) true else isScrollable

@@ -14,6 +14,9 @@ class CardGroupAdapter(
 ): RecyclerView.Adapter<CardGroupAdapter.VH>() {
 
     class VH(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+
         fun bind(card: RenderableCard) {
             binding.setVariable(BR.card, card)
         }
