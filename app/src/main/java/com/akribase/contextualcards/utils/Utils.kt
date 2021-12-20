@@ -2,11 +2,14 @@ package com.akribase.contextualcards.utils
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.constraintlayout.motion.widget.MotionLayout
+import com.akribase.contextualcards.R
 
 fun Context.dpToPx(dp: Int) = TypedValue.applyDimension(
     TypedValue.COMPLEX_UNIT_DIP,
@@ -21,3 +24,11 @@ fun ViewGroup.inflate(@LayoutRes res:Int) =
     inflater.inflate(res, this, false)
 
 fun String.parseColor() = Color.parseColor(this)
+
+fun MotionLayout.transition() = run {
+    if (currentState == R.id.start)transitionToEnd() else transitionToStart()
+    true
+}
+
+/* no-op */
+fun noop(){}

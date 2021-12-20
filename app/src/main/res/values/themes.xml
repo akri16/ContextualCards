@@ -13,7 +13,7 @@
         <item name="colorSurface">@color/colorSurface</item>
         <item name="android:fontFamily">@font/roboto</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
