@@ -15,7 +15,7 @@ class ListVH(private val rv: RecyclerView, designType: DesignType): VH(rv, desig
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        rv.addItemDecoration(SpacingItemDecoration(rv.context.dpToPx(12).toInt()))
+        rv.addItemDecoration(SpacingItemDecoration(rv.context.dpToPx(15).toInt()))
     }
 
     override fun bind(cardGroup: RenderableCardGroup) {
