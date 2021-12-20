@@ -23,7 +23,7 @@ class CardGroupAdapter(
         init {
             if (designType == DesignType.HC5) {
                 binding.root.layoutParams = ViewGroup.LayoutParams(
-                    (getScreenWidth() - binding.root.context.dpToPx(30)).toInt(),
+                    (getScreenWidth() - binding.root.context.dpToPx(40)).toInt(),
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
             }

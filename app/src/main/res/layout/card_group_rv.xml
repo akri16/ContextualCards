@@ -6,6 +6,6 @@
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:overScrollMode="never"
     android:clipToPadding="false"
-    android:paddingStart="15dp"
-    android:paddingEnd="15dp"
-    android:paddingTop="10dp"/>
+    android:paddingStart="@dimen/layout_padding"
+    android:paddingEnd="@dimen/layout_padding"
+    android:paddingTop="15dp"/>

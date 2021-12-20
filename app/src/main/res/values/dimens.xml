@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_space">12dp</dimen>
+    <dimen name="card_group_space">15dp</dimen>
+    <dimen name="layout_padding">20dp</dimen>
+
+</resources>
