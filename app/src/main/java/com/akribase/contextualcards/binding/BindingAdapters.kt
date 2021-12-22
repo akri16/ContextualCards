@@ -7,17 +7,15 @@ import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.text.Editable
 import android.widget.Button
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
+import android.widget.TextView
 import com.akribase.contextualcards.models.data.CTA
 import com.akribase.contextualcards.models.renderable.RenderableBG
-import com.akribase.contextualcards.utils.dpToPx
+import com.akribase.contextualcards.utils.SimpleTextWatcher
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 
 
 @BindingAdapter(value = ["deeplink"])
@@ -31,12 +29,14 @@ fun setDeepLink(view: View, url: String?) {
 }
 
 @BindingAdapter(value = ["cta"])
-fun setCTA(view: Button, cta: CTA) {
-    cta.url?.let { setDeepLink(view, it) }
-    view.apply {
-        backgroundTintList = ColorStateList.valueOf(Color.parseColor(cta.bgColor))
-        setTextColor(Color.parseColor(cta.textColor))
-        text = cta.text
+fun setCTA(view: Button, cta: CTA?) {
+    cta?.let {
+        it.url?.let { setDeepLink(view, it) }
+        view.apply {
+            backgroundTintList = ColorStateList.valueOf(Color.parseColor(it.bgColor))
+            setTextColor(Color.parseColor(it.textColor))
+            text = it.text
+        }
     }
 }
 
@@ -46,24 +46,23 @@ fun setDrawable(view: ImageView, src: RenderableBG) {
         view.setImageDrawable(it)
         return
     }
-
-    src.let{
-        if (it.width != null && it.height != null){
-            Glide.with(view)
-                .load(it.url)
-                .apply(RequestOptions()
-                    .override(
-                        view.context.dpToPx(it.width).toInt(),
-                        view.context.dpToPx(it.height).toInt()
-                    ))
-                .into(view)
-        } else {
-            setImage(view, it.url)
-        }
-    }
+    setImage(view, src.url)
 }
 
 @BindingAdapter(value = ["android:src"])
 fun setImage(view: ImageView, src: String?) {
     src?.let{ Glide.with(view).load(src).into(view) }
+}
+
+
+@BindingAdapter(value = ["goneIfEmpty"])
+fun setGoneIfEmpty(view: TextView, isGoneIfEmpty: Boolean) {
+    if (isGoneIfEmpty) {
+        view.visibility = if (view.text.isNullOrBlank()) View.GONE else View.VISIBLE
+        view.addTextChangedListener(object: SimpleTextWatcher() {
+            override fun afterTextChanged(p0: Editable?) {
+                view.visibility = if (p0.isNullOrBlank()) View.GONE else View.VISIBLE
+            }
+        })
+    }
 }

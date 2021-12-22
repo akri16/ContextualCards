@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.akribase.contextualcards.data.MainRepository
 import com.akribase.contextualcards.data.RepoResult
 import com.akribase.contextualcards.models.renderable.RenderableCardGroup
+import com.akribase.contextualcards.ui.adapters.H3Remove
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     val repo = MainRepository
     private var fetchJob: Job? = null
     val isFetching = MutableLiveData(false)
@@ -28,12 +29,28 @@ class MainViewModel: ViewModel() {
             repo.getUI().let { repoResult ->
                 when (repoResult) {
                     is RepoResult.Success -> uiSpec.value = repoResult.res.map {
-                            RenderableCardGroup.createFromCardGroup(it)
-                        }
+                        RenderableCardGroup.createFromCardGroup(it)
+                    }
                     is RepoResult.Error -> Timber.d(repoResult.err.toString())
                 }
             }
             isFetching.value = false
         }
     }
+
+    fun remove(h3Remove: H3Remove) {
+        val uiSpec = uiSpec.value?.toMutableList()
+        val cardGroup = uiSpec?.get(h3Remove.groupPos)
+        val cards = cardGroup?.cards?.toMutableList()
+        cards?.removeAt(h3Remove.cardPos)
+
+        if (cards.isNullOrEmpty()) {
+            uiSpec?.removeAt(h3Remove.groupPos)
+        } else {
+            uiSpec[h3Remove.groupPos] = cardGroup.copy(cards = cards)
+        }
+
+        this.uiSpec.value = uiSpec
+    }
+
 }

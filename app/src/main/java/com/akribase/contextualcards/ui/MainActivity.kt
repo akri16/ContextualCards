@@ -11,6 +11,7 @@ import com.akribase.contextualcards.ui.adapters.contextualview.ContextualViewAda
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
+    private val adapter = ContextualViewAdapter { viewModel.remove(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRv() {
-        viewModel.uiSpec.observe(this) {
-            binding.rv.adapter = ContextualViewAdapter(it)
-        }
+        binding.rv.adapter = adapter
+        viewModel.uiSpec.observe(this) { adapter.submitList(it) }
     }
 }

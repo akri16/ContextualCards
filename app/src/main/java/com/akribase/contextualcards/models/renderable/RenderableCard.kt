@@ -1,10 +1,7 @@
 package com.akribase.contextualcards.models.renderable
 
-import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -14,6 +11,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
+import androidx.recyclerview.widget.DiffUtil
 import com.akribase.contextualcards.models.data.*
 import com.akribase.contextualcards.utils.parseColor
 
@@ -26,8 +24,19 @@ data class RenderableCard(
     val cta: CTA?,
     val url: String?
 ) {
-
     companion object {
+        val DIFFCALLBACK = object: DiffUtil.ItemCallback<RenderableCard>() {
+            override fun areItemsTheSame(
+                oldItem: RenderableCard,
+                newItem: RenderableCard
+            ) = oldItem.name == newItem.name
+
+            override fun areContentsTheSame(
+                oldItem: RenderableCard,
+                newItem: RenderableCard
+            ) = oldItem == newItem
+        }
+
         private fun formatSpans(formattedText: FormattedText?, fallbackText: String): CharSequence {
             if (formattedText == null) return fallbackText
 
@@ -52,9 +61,7 @@ data class RenderableCard(
                             end,
                             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
-                    }
-
-                    entity.fontStyle?.let {
+                    }?: entity.fontStyle?.let {
                         val span = when(it) {
                             FontStyle.UNDERLINE -> UnderlineSpan()
                             FontStyle.ITALICS -> StyleSpan(Typeface.ITALIC)
@@ -64,9 +71,7 @@ data class RenderableCard(
                         spannableBuilder.setSpan(
                             span, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
-                    }
-
-                    entity.url?.let {
+                    }?: entity.url?.let {
                         spannableBuilder.setSpan(
                             URLSpan(it), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
@@ -106,17 +111,18 @@ data class RenderableCard(
             }
         }
 
-        fun createFromCard(card: Card, height: Int?): RenderableCard {
+        fun createFromCard(card: Card): RenderableCard {
             val title = formatSpans(card.formattedTitle, card.title ?: "")
             val desp = formatSpans(card.formattedDescription, card.description ?: "")
 
             val bg = if (card.bgImage?.image_url != null) {
                 with(card.bgImage) {
-                    val width = height?.let { aspectRatio?.times(it)?.toInt() }
-                    RenderableBG(url = image_url, height = height, width = width)
+                    RenderableBG(url = image_url, aspectRatio = aspectRatio)
                 }
             } else {
-                RenderableBG(img = getDrawableBG(card.bgColor, card.gradient))
+                RenderableBG(
+                    img = getDrawableBG(card.bgColor, card.gradient)
+                )
             }
 
             return with(card) {
