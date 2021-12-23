@@ -1,7 +1,6 @@
 package com.akribase.contextualcards.data
 
-import com.akribase.contextualcards.models.data.CardGroup
-import com.akribase.contextualcards.models.data.CardGroupsResponse
+import com.akribase.contextualcards.models.CardGroupsResponse
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

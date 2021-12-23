@@ -1,6 +1,6 @@
 package com.akribase.contextualcards.data
 
-import com.akribase.contextualcards.models.data.CardGroup
+import com.akribase.cardcomponent.models.data.CardGroup
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 

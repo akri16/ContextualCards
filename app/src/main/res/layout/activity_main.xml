@@ -18,27 +18,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_fampaylogo" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
+        <com.akribase.cardcomponent.ui.CardComponent
+            android:id="@+id/component"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorSurface"
-                android:paddingTop="4dp"
-                android:paddingBottom="20dp"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

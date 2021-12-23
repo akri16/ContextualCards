@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.akribase.cardcomponent.models.data.CardGroup
+import com.akribase.cardcomponent.ui.adapters.H3Remove
 import com.akribase.contextualcards.data.MainRepository
 import com.akribase.contextualcards.data.RepoResult
-import com.akribase.contextualcards.models.renderable.RenderableCardGroup
-import com.akribase.contextualcards.ui.adapters.H3Remove
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -16,7 +16,7 @@ class MainViewModel : ViewModel() {
     val repo = MainRepository
     private var fetchJob: Job? = null
     val isFetching = MutableLiveData(false)
-    val uiSpec = MutableLiveData<List<RenderableCardGroup>>()
+    val uiSpec = MutableLiveData<List<CardGroup>>()
 
     init {
         fetchUISpec()
@@ -28,9 +28,7 @@ class MainViewModel : ViewModel() {
             isFetching.value = true
             repo.getUI().let { repoResult ->
                 when (repoResult) {
-                    is RepoResult.Success -> uiSpec.value = repoResult.res.map {
-                        RenderableCardGroup.createFromCardGroup(it)
-                    }
+                    is RepoResult.Success -> uiSpec.value = repoResult.res ?: listOf()
                     is RepoResult.Error -> Timber.d(repoResult.err.toString())
                 }
             }

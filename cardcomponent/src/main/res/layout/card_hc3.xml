@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.akribase.cardcomponent.utils.UtilsKt" alias="util"/>
+        <variable
+            name="card"
+            type="com.akribase.cardcomponent.models.renderable.RenderableCard" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/ml"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_margin="8dp"
+        app:layoutDescription="@xml/card_hc3_scene">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bg_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:id="@+id/dismiss_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toTopOf="@+id/remind_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_dismiss"
+            android:stateListAnimator="@animator/card_state_list_animator"/>
+
+        <ImageView
+            android:id="@+id/remind_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:adjustViewBounds="true"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/dismiss_btn"
+            app:layout_constraintStart_toStartOf="@+id/dismiss_btn"
+            app:layout_constraintTop_toBottomOf="@+id/dismiss_btn"
+            app:srcCompat="@drawable/ic_remind"
+            android:stateListAnimator="@animator/card_state_list_animator"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fg_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            custom:deeplink="@{card.url}"
+            android:onLongClick="@{() -> util.transition(ml)}">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                custom:bg="@{card.bg}"
+                tools:src="?colorPrimary" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/ic_hc3_img" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@{card.title}"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView2"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                    tools:text="Big display card with action" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{card.desp}"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:text="This is a sample text for the subtitle that you can add to contextual cards" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/black"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingLeft="32dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="32dp"
+                    android:paddingBottom="12dp"
+                    android:textAllCaps="false"
+                    app:cornerRadius="6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView2"
+                    custom:cta="@{card.cta}"
+                    tools:text="Action" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>
