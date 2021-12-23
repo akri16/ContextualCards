@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
@@ -19,7 +20,7 @@ suspend fun <T> safeApiCall(
             Timber.e(e)
             RepoResult.Error(
                 when (e) {
-                    is SocketTimeoutException -> Errors.NetworkError
+                    is SocketTimeoutException, is UnknownHostException -> Errors.NetworkError
                     else -> e.processErr()
                 }
             )

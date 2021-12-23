@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Contextual Cards</string>
+    <string name="connection_error">Connection Error</string>
 </resources>

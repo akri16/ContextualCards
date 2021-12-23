@@ -22,6 +22,7 @@ class MainViewModel @Inject constructor(
 
     private var fetchJob: Job? = null
     val isFetching = MutableLiveData(false)
+    val isConnectionError = MutableLiveData(false)
     val uiSpec = MutableLiveData<List<CardGroup>>()
 
     init {
@@ -34,8 +35,14 @@ class MainViewModel @Inject constructor(
             isFetching.value = true
             repo.getUI(shouldFetchReminds).let { repoResult ->
                 when (repoResult) {
-                    is RepoResult.Success -> uiSpec.value = repoResult.res ?: listOf()
-                    is RepoResult.Error -> Timber.d(repoResult.err.toString())
+                    is RepoResult.Success -> {
+                        uiSpec.value = repoResult.res ?: listOf()
+                        isConnectionError.value = false
+                    }
+                    is RepoResult.Error -> {
+                        Timber.d(repoResult.err.toString())
+                        isConnectionError.value = true
+                    }
                 }
             }
             isFetching.value = false
@@ -65,5 +72,4 @@ class MainViewModel @Inject constructor(
         }
 
     }
-
 }
