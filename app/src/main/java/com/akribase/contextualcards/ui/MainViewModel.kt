@@ -1,18 +1,25 @@
 package com.akribase.contextualcards.ui
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.*
 import com.akribase.cardcomponent.models.data.CardGroup
 import com.akribase.cardcomponent.ui.adapters.H3Remove
 import com.akribase.contextualcards.data.MainRepository
 import com.akribase.contextualcards.data.RepoResult
 import com.akribase.contextualcards.models.SavedHC3
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-    val repo = MainRepository
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    val repo: MainRepository
+) : ViewModel() {
+
     private var fetchJob: Job? = null
     val isFetching = MutableLiveData(false)
     val uiSpec = MutableLiveData<List<CardGroup>>()
@@ -25,7 +32,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             isFetching.value = true
-            repo.getUI(getApplication(), shouldFetchReminds).let { repoResult ->
+            repo.getUI(shouldFetchReminds).let { repoResult ->
                 when (repoResult) {
                     is RepoResult.Success -> uiSpec.value = repoResult.res ?: listOf()
                     is RepoResult.Error -> Timber.d(repoResult.err.toString())
@@ -54,7 +61,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         this.uiSpec.value = uiSpec
 
         card?.bgImage?.let {
-            viewModelScope.launch { repo.addToPref(SavedHC3(card, h3Remove.remind), getApplication()) }
+            viewModelScope.launch { repo.addToPref(SavedHC3(card, h3Remove.remind)) }
         }
 
     }

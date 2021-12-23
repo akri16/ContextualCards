@@ -7,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import com.akribase.cardcomponent.ui.CardComponent
 import com.akribase.contextualcards.R
 import com.akribase.contextualcards.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
