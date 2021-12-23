@@ -6,9 +6,10 @@ A standalone Plug-and-Play container that can be used to display Contextual Card
 
 ## Screenshots
 <p>
-    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-1.jpg" width="200" />
-    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-2.jpg" width="200"/>
-    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-3.jpg" width="200"/>
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-1.jpg" width="180" />
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-2.jpg" width="180"/>
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-3.jpg" width="180"/>
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-4.jpg" width="180"/>
 </p>
 
 ## Architecture
@@ -30,7 +31,7 @@ Plug this Component into your XML and play with it in your Activity/Fragment ðŸ˜
 ```kt
 private fun initComponent(component: CardComponent) {
         component.onFetch = { viewModel.fetchUISpec() }
-        component.onHC3Remove = { viewModel.remove(it) }
+        component.onHC3Remove = {it:H3Remove viewModel.remove(it) }
         viewModel.isFetching.observe(this) {it:Boolean -> component.isLoading = it }
         viewModel.uiSpec.observe(this) {it:List<CardGroup> -> component.render(it) }
 }
@@ -63,6 +64,7 @@ private fun initComponent(component: CardComponent) {
     - [x]  Dismiss on click dismiss
     - [x]  Save on click remind later
 - [x]  Make the Container Stand-alone
+- [x]  Add error handling
 
 ## **Building**
 

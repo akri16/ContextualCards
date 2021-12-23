@@ -64,6 +64,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@android:color/black"
                 android:text="@{card.title}"
+                custom:clickable="@{true}"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"

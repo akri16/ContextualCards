@@ -9,6 +9,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.text.Editable
+import android.text.method.LinkMovementMethod
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -64,5 +65,12 @@ fun setGoneIfEmpty(view: TextView, isGoneIfEmpty: Boolean) {
                 view.visibility = if (p0.isNullOrBlank()) View.GONE else View.VISIBLE
             }
         })
+    }
+}
+
+@BindingAdapter(value = ["clickable"])
+fun setIsClickable(view: TextView, isClickable: Boolean) {
+    if (isClickable) {
+        view.movementMethod = LinkMovementMethod.getInstance()
     }
 }

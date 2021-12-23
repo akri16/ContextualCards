@@ -40,6 +40,7 @@ class MainViewModel @Inject constructor(
                         isConnectionError.value = false
                     }
                     is RepoResult.Error -> {
+                        uiSpec.value = listOf()
                         Timber.d(repoResult.err.toString())
                         isConnectionError.value = true
                     }
