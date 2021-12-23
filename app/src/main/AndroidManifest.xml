@@ -6,7 +6,7 @@
     <application
         android:allowBackup="true"
         android:name=".App"
-        android:icon="@drawable/ic_fampaylogo"
+        android:icon="@drawable/ic_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
