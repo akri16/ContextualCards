@@ -3,6 +3,7 @@
 
     <style name="BaseTheme">
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColorLink">#1E88E5</item>
     </style>
 
 </resources>

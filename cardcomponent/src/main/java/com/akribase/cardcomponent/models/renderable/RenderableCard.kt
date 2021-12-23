@@ -61,7 +61,9 @@ data class RenderableCard(
                             end,
                             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
-                    }?: entity.fontStyle?.let {
+                    }
+
+                    entity.fontStyle?.let {
                         val span = when(it) {
                             FontStyle.UNDERLINE -> UnderlineSpan()
                             FontStyle.ITALICS -> StyleSpan(Typeface.ITALIC)
@@ -71,7 +73,9 @@ data class RenderableCard(
                         spannableBuilder.setSpan(
                             span, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
-                    }?: entity.url?.let {
+                    }
+
+                    entity.url?.let {
                         spannableBuilder.setSpan(
                             URLSpan(it), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
