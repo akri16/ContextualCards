@@ -1,6 +1,7 @@
 # ContextualCards
-
-A standalone container that can be used to display Contextual Cards that are rendered using JSON from an API
+[![Figma Designs](https://img.shields.io/badge/Api-Json-green)](https://run.mocky.io/v3/04a04703-5557-4c84-a127-8c55335bb3b4) &nbsp; &nbsp;
+[![Figma Designs](https://img.shields.io/badge/Design-Figma-important)](https://www.figma.com/file/WAKTJJB0vOqU07UMJDcYg0/AAL3-%3A-Android-assignment-Design-Specs?node-id=4287%3A35) <br><br>
+A standalone Plug-and-Play container that can be used to display Contextual Cards that are rendered using JSON from an API
 
 ## Screenshots
 <p>
@@ -13,6 +14,27 @@ A standalone container that can be used to display Contextual Cards that are ren
 
 It uses **Model View ViewModel (MVVM)** architecture <br> <br>
 <p align="center"><img alt="Architecture Diagram" src="https://github.com/akri16/ContextualCards/blob/master/assets/arch-diagram.png" width="500"/></p>
+
+## Usage
+
+Plug this Component into your XML and play with it in your Activity/Fragment 😄
+
+```xml
+<com.akribase.cardcomponent.ui.CardComponent
+            android:id="@+id/component"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+```
+
+```kt
+private fun initComponent(component: CardComponent) {
+        component.onFetch = { viewModel.fetchUISpec() }
+        component.onHC3Remove = { viewModel.remove(it) }
+        viewModel.isFetching.observe(this) {it:Boolean -> component.isLoading = it }
+        viewModel.uiSpec.observe(this) {it:List<CardGroup> -> component.render(it) }
+}
+
+```
 
 ## Todo
 
