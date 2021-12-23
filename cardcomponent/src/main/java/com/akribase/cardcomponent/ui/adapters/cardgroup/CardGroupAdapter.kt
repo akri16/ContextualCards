@@ -15,7 +15,7 @@ import com.akribase.cardcomponent.utils.dpToPx
 import com.akribase.cardcomponent.utils.getScreenWidth
 import com.akribase.cardcomponent.utils.inflater
 
-class CardGroupAdapter(
+internal class CardGroupAdapter(
     val onHC3Dismiss: (Int) -> Unit = {},
     val onHC3Remind: (Int) -> Unit = {},
 ) : ListAdapter<RenderableCard, CardGroupAdapter.VH>(RenderableCard.DIFFCALLBACK) {

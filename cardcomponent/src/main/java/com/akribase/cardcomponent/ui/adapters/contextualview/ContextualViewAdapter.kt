@@ -9,7 +9,7 @@ import com.akribase.cardcomponent.models.renderable.RenderableCardGroup
 import com.akribase.cardcomponent.ui.adapters.H3Remove
 import com.akribase.cardcomponent.utils.inflate
 
-class ContextualViewAdapter(val onH3Remove: (H3Remove) -> Unit): ListAdapter<RenderableCardGroup, VH>(
+internal class ContextualViewAdapter(val onH3Remove: (H3Remove) -> Unit): ListAdapter<RenderableCardGroup, VH>(
     RenderableCardGroup.DIFFCALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return if(viewType < 0) {

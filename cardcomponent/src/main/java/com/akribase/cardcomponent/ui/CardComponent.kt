@@ -14,7 +14,7 @@ import com.akribase.cardcomponent.utils.inflater
 
 class CardComponent @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context, attrs, R.style.BaseTheme) {
+) : FrameLayout(context, attrs) {
 
     var onHC3Remove: (H3Remove) -> Unit = {}
     var onFetch: () -> Unit = {}

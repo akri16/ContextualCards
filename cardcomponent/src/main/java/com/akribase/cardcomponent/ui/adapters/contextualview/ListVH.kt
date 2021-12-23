@@ -8,7 +8,7 @@ import com.akribase.cardcomponent.ui.adapters.H3Remove
 import com.akribase.cardcomponent.ui.adapters.SpacingItemDecoration
 import com.akribase.cardcomponent.ui.adapters.cardgroup.CardGroupAdapter
 
-class ListVH(
+internal class ListVH(
     rv: RecyclerView,
     onH3Remove: (H3Remove) -> Unit
 ): VH(rv) {

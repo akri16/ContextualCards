@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import java.lang.IllegalStateException
 
-class SpacingItemDecoration @JvmOverloads constructor(
+internal class SpacingItemDecoration @JvmOverloads constructor(
     private val spacingPx: Int,
     private val addStartSpacing: Boolean = false,
     private val addEndSpacing: Boolean = false

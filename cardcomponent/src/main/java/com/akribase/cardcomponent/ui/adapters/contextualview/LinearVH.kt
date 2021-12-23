@@ -11,7 +11,7 @@ import com.akribase.cardcomponent.models.renderable.RenderableCardGroup
 import com.akribase.cardcomponent.utils.inflate
 import com.akribase.cardcomponent.utils.inflater
 
-class LinearVH(private val ll: LinearLayout): VH(ll) {
+internal class LinearVH(private val ll: LinearLayout): VH(ll) {
     private val layoutParams = LinearLayout.LayoutParams(
         0,
         ViewGroup.LayoutParams.MATCH_PARENT,

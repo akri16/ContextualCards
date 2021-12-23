@@ -1,32 +1,31 @@
 package com.akribase.contextualcards.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.akribase.cardcomponent.models.data.CardGroup
 import com.akribase.cardcomponent.ui.adapters.H3Remove
 import com.akribase.contextualcards.data.MainRepository
 import com.akribase.contextualcards.data.RepoResult
+import com.akribase.contextualcards.models.SavedHC3
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
     val repo = MainRepository
     private var fetchJob: Job? = null
     val isFetching = MutableLiveData(false)
     val uiSpec = MutableLiveData<List<CardGroup>>()
 
     init {
-        fetchUISpec()
+        _fetchUISpec(true)
     }
 
-    fun fetchUISpec() {
+    private fun _fetchUISpec(shouldFetchReminds: Boolean) {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             isFetching.value = true
-            repo.getUI().let { repoResult ->
+            repo.getUI(getApplication(), shouldFetchReminds).let { repoResult ->
                 when (repoResult) {
                     is RepoResult.Success -> uiSpec.value = repoResult.res ?: listOf()
                     is RepoResult.Error -> Timber.d(repoResult.err.toString())
@@ -36,11 +35,15 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun fetchUISpec() {
+        _fetchUISpec(false)
+    }
+
     fun remove(h3Remove: H3Remove) {
         val uiSpec = uiSpec.value?.toMutableList()
         val cardGroup = uiSpec?.get(h3Remove.groupPos)
         val cards = cardGroup?.cards?.toMutableList()
-        cards?.removeAt(h3Remove.cardPos)
+        val card = cards?.removeAt(h3Remove.cardPos)
 
         if (cards.isNullOrEmpty()) {
             uiSpec?.removeAt(h3Remove.groupPos)
@@ -49,6 +52,11 @@ class MainViewModel : ViewModel() {
         }
 
         this.uiSpec.value = uiSpec
+
+        card?.bgImage?.let {
+            viewModelScope.launch { repo.addToPref(SavedHC3(card, h3Remove.remind), getApplication()) }
+        }
+
     }
 
 }
