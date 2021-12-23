@@ -12,7 +12,34 @@ A standalone container that can be used to display Contextual Cards that are ren
 ## Architecture
 
 It uses **Model View ViewModel (MVVM)** architecture <br> <br>
-![Architecture Diagram](https://github.com/akri16/ContextualCards/blob/master/assets/arch-diagram.png)
+<p align="center"><img alt="Architecture Diagram" src="https://github.com/akri16/ContextualCards/blob/master/assets/arch-diagram.png" width="500"/></p>
+
+## Todo
+
+- [x]  Init the app
+- [x]  Design different Cards
+    - [x]  HC3
+    - [x]  HC6
+    - [x]  HC5
+    - [x]  HC1
+    - [x]  HC9
+- [x]  Build models
+- [x]  Build Simple Renderables
+- [x]  Link the Renderables to the design
+- [x]  Build Recycler Views for Card Groups
+- [x]  Convert models to renderables
+- [x]  Add Styling
+- [x]  Connect to API
+- [x]  Bug-Fixes
+- [x]  Create Repository and Push to Github
+- [x]  Create README
+- [x]  Add Swipe to Refresh
+- [x]  Add HC3 long click effect
+    - [x]  Implement Animation
+    - [x]  Make Rv use ListAdapter with DiffUtil
+    - [x]  Dismiss on click dismiss
+    - [x]  Save on click remind later
+- [x]  Make the Container Stand-alone
 
 ## **Building**
 
@@ -58,32 +85,6 @@ This analyses the code and produces reports containing warnings about your appli
 - [Gradle Plugin User Guide](http://tools.android.com/tech-docs/new-build-system/user-guide)
 - [Gradle Plugin Release Notes](http://tools.android.com/tech-docs/new-build-system)
 
-## Todo
-
-- [x]  Init the app
-- [x]  Design different Cards
-    - [x]  HC3
-    - [x]  HC6
-    - [x]  HC5
-    - [x]  HC1
-    - [x]  HC9
-- [x]  Build models
-- [x]  Build Simple Renderables
-- [x]  Link the Renderables to the design
-- [x]  Build Recycler Views for Card Groups
-- [x]  Convert models to renderables
-- [x]  Add Styling
-- [x]  Connect to API
-- [x]  Bug-Fixes
-- [x]  Create Repository and Push to Github
-- [x]  Create README
-- [x]  Add Swipe to Refresh
-- [x]  Add HC3 long click effect
-    - [x]  Implement Animation
-    - [x]  Make Rv use ListAdapter with DiffUtil
-    - [x]  Dismiss on click dismiss
-    - [x]  Save on click remind later
-- [x]  Make the Container Stand-alone
 
 ## License
 
