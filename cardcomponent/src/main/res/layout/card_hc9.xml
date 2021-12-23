@@ -11,9 +11,10 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="195dp"
         android:layout_margin="8dp"
+        android:padding="4dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         custom:deeplink="@{card.url}">
@@ -24,10 +25,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             custom:bg="@{card.bg}"
+            tools:src="@drawable/hc5_bg_img"
             android:scaleType="centerCrop" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
     </com.google.android.material.card.MaterialCardView>
 </layout>
