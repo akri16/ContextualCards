@@ -2,22 +2,17 @@
 
 A standalone container that can be used to display Contextual Cards that are rendered using JSON from an API
 
+## Screenshots
+<p>
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-1.jpg" width="200" />
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-2.jpg" width="200"/>
+    <img src="https://github.com/akri16/ContextualCards/blob/master/assets/ss-3.jpg" width="200"/>
+</p>
+
 ## Architecture
 
 It uses **Model View ViewModel (MVVM)** architecture <br> <br>
 ![Architecture Diagram](https://github.com/akri16/ContextualCards/blob/master/assets/arch-diagram.png)
-
-## **Structure**
-
-- `build.gradle` - root gradle config file
-- `settings.gradle` - root gradle settings file
-- `app` - our only project in this repo
-- `app/build.gradle` - project gradle config file
-- `app/src` - main project source directory
-- `app/src/main` - main project flavour
-- `app/src/main/AndroidManifest.xml` - manifest file
-- `app/src/main/java` - java source directory
-- `app/src/main/res` - resources directory
 
 ## **Building**
 
@@ -83,7 +78,12 @@ This analyses the code and produces reports containing warnings about your appli
 - [x]  Create Repository and Push to Github
 - [x]  Create README
 - [x]  Add Swipe to Refresh
-- [ ]  Add HC3 long click effect
+- [x]  Add HC3 long click effect
+    - [x]  Implement Animation
+    - [x]  Make Rv use ListAdapter with DiffUtil
+    - [x]  Dismiss on click dismiss
+    - [x]  Save on click remind later
+- [x]  Make the Container Stand-alone
 
 ## License
 
