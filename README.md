@@ -102,6 +102,7 @@ private fun initComponent(component: CardComponent) {
 6. [Coroutines](https://developer.android.com/kotlin/coroutines): Concurrency
 7. [AAC](https://developer.android.com/jetpack/guide): Viewmodel, Livedata
 
+
 ## Todo
 
 - [x]  Init the app
@@ -129,6 +130,19 @@ private fun initComponent(component: CardComponent) {
    - [x]  Save on click remind later
 - [x]  Make the Container Stand-alone
 - [x]  Add error handling
+
+### Future Work
+
+This can be also be built using **Jetpack Compose (JC),** the new declarative UI framework. This might make the code a bit more scalable and adaptable.
+
+During the development of this project I faced difficulties in building the nested lists as I had to create the Viewgroups as well as the Views and associate them dynamically at runtime. With Compose, you can just declare the views without the need to handle how they are rendered internally.
+
+However, I have used the normal imperative UI here due to time constraints. I am interested to modify this project to use JC in the future.
+
+## Download
+1. This github repository can be cloned using `git clone https://github.com/Quizzie-SE/Quizzie-Android-Companion` command
+2. Android Studio has to be installed (Version > 4.0)
+3. The cloned repo in the local PC should be opened using Android Studio
 
 ## **Building**
 
