@@ -8,7 +8,7 @@ import java.lang.Exception
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-suspend fun <T> safeApiCall(
+suspend fun <T> safeIoCall(
     dispatcher: CoroutineDispatcher,
     call: suspend () -> T,
     processErr: Exception.() -> Errors = { Errors.UnknownError }

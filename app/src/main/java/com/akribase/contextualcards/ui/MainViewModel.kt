@@ -10,8 +10,10 @@ import com.akribase.contextualcards.data.RepoResult
 import com.akribase.contextualcards.models.SavedHC3
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -55,22 +57,26 @@ class MainViewModel @Inject constructor(
     }
 
     fun remove(h3Remove: H3Remove) {
-        val uiSpec = uiSpec.value?.toMutableList()
-        val cardGroup = uiSpec?.get(h3Remove.groupPos)
-        val cards = cardGroup?.cards?.toMutableList()
-        val card = cards?.removeAt(h3Remove.cardPos)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val uiSpec = uiSpec.value?.toMutableList()
+                val cardGroup = uiSpec?.get(h3Remove.groupPos)
+                val cards = cardGroup?.cards?.toMutableList()
+                val card = cards?.removeAt(h3Remove.cardPos)
 
-        if (cards.isNullOrEmpty()) {
-            uiSpec?.removeAt(h3Remove.groupPos)
-        } else {
-            uiSpec[h3Remove.groupPos] = cardGroup.copy(cards = cards)
+                if (cards.isNullOrEmpty()) {
+                    uiSpec?.removeAt(h3Remove.groupPos)
+                } else {
+                    uiSpec[h3Remove.groupPos] = cardGroup.copy(cards = cards)
+                }
+
+                withContext(Dispatchers.Main) {
+                    this@MainViewModel.uiSpec.value = uiSpec
+                    card?.bgImage?.let {
+                        repo.addToPref(SavedHC3(card, h3Remove.remind))
+                    }
+                }
+            }
         }
-
-        this.uiSpec.value = uiSpec
-
-        card?.bgImage?.let {
-            viewModelScope.launch { repo.addToPref(SavedHC3(card, h3Remove.remind)) }
-        }
-
     }
 }
